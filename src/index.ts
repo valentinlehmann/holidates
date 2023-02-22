@@ -12,6 +12,8 @@ app.get('/', (req: Request, res: Response) => {
     res.send('Welcome to Holidates!');
 })
 
+app.use('/v1/', v1);
+
 app.listen(port, () => {
     log('rest', `Server is running on port ${port}.`);
 })
