@@ -1,7 +1,11 @@
 import express from "express";
-import {holidays} from "../icalImporter";
+import swaggerUi from "swagger-ui-express";
+import swaggerDocument from "./openapi.json";
+import {holidays} from "../../icalImporter";
 
 const router = express.Router();
+
+router.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 router.get('/current/:state?', (req, res) => {
     const state = req.params.state;

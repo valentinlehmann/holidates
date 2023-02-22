@@ -1,7 +1,7 @@
 import express, {Request, Response} from 'express';
 import dotenv from 'dotenv';
 import {holidays, loadHolidayData} from "./icalImporter";
-import v1 from "./routes/v1";
+import v1 from "./routes/v1/route";
 
 dotenv.config();
 

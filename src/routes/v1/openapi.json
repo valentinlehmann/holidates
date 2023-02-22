@@ -1,0 +1,235 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Holidates",
+    "description": "An API for getting the dates of German holidays.",
+    "contact": {
+      "email": "info@valentinlehmann.de"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://github.com/valentinlehmann/holidates/raw/main/LICENSE"
+    },
+    "version": "1.0.0"
+  },
+  "externalDocs": {
+    "description": "Find out more about Holidates",
+    "url": "http://swagger.io"
+  },
+  "servers": [
+    {
+      "url": "https://holidates.valentinlehmann.de/v1"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Holidates"
+    }
+  ],
+  "paths": {
+    "/current": {
+      "get": {
+        "tags": [
+          "Holidates"
+        ],
+        "summary": "Get the current holidays",
+        "operationId": "getCurrent",
+        "responses": {
+          "200": {
+            "description": "Successful operation, data in body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HolidaysArray"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No holidays could be found"
+          }
+        }
+      }
+    },
+    "/current/{state}": {
+      "get": {
+        "tags": [
+          "Holidates"
+        ],
+        "parameters": [
+          {
+            "name": "state",
+            "in": "path",
+            "description": "ISO 3166-2:DE code of the state to search the holidays of",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "summary": "Get the current holidays by state",
+        "operationId": "getCurrentByState",
+        "responses": {
+          "200": {
+            "description": "Successful operation, data in body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HolidaysArray"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No holidays could be found"
+          }
+        }
+      }
+    },
+    "/next/{state}": {
+      "get": {
+        "tags": [
+          "Holidates"
+        ],
+        "parameters": [
+          {
+            "name": "state",
+            "in": "path",
+            "description": "ISO 3166-2:DE code of the state to search the holidays of",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "summary": "Get the next holidays in a state",
+        "operationId": "getNext",
+        "responses": {
+          "200": {
+            "description": "Successful operation, data in body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Holidays"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No holidays could be found"
+          }
+        }
+      }
+    },
+    "/upcoming": {
+      "get": {
+        "tags": [
+          "Holidates"
+        ],
+        "summary": "Get the upcoming holidays",
+        "operationId": "getUpcoming",
+        "responses": {
+          "200": {
+            "description": "Successful operation, data in body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HolidaysArray"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No holidays could be found"
+          }
+        }
+      }
+    },
+    "/upcoming/{state}": {
+      "get": {
+        "tags": [
+          "Holidates"
+        ],
+        "parameters": [
+          {
+            "name": "state",
+            "in": "path",
+            "description": "ISO 3166-2:DE code of the state to search the holidays of",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "summary": "Get the upcoming holidays by state",
+        "operationId": "getUpcomingByState",
+        "responses": {
+          "200": {
+            "description": "Successful operation, data in body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HolidaysArray"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No holidays could be found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Holidays": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "example": "Osterferien 2023 Bayern"
+          },
+          "shortName": {
+            "type": "string",
+            "example": "Osterferien"
+          },
+          "state": {
+            "$ref": "#/components/schemas/State"
+          },
+          "start": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-04-02T22:00:00.000Z"
+          },
+          "end": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-04-15T22:00:00.000Z"
+          }
+        }
+      },
+      "HolidaysArray": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Holidays"
+        }
+      },
+      "State": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "code": "DE-BY",
+          "name": "Bayern"
+        }
+      }
+    }
+  }
+}
