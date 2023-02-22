@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.0.0",
   "info": {
     "title": "Holidates",
     "description": "An API for getting the dates of German holidays.",
@@ -14,7 +14,7 @@
   },
   "externalDocs": {
     "description": "Find out more about Holidates",
-    "url": "http://swagger.io"
+    "url": "https://github.com/valentinlehmann/"
   },
   "servers": [
     {
