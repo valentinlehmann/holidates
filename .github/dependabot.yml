@@ -10,5 +10,5 @@ updates:
     schedule:
       interval: "daily"
     # Add assignees
-    assignees:
+    reviewers:
       - "valentinlehmann"
