@@ -22,6 +22,6 @@
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
     "node-ical": "^0.16.0",
-    "swagger-ui-express": "^4.6.3"
+    "swagger-ui-express": "^5.0.0"
   }
 }
